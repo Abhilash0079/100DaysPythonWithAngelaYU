@@ -1,0 +1,20 @@
+# number = int(input()) # Which number do you want to check?
+
+# if number % 2 = 0:
+#   print("This is an even number.")
+# else:
+#   print("This is an odd number.")
+
+
+#####Solution
+#Error line 3 if number % 2 = 0
+#Remember the single = is an assignment.
+#Double == checks the equality.
+
+
+number = int(input()) # Which number do you want to check?
+
+if number % 2 == 0:
+  print("This is an even number.")
+else:
+  print("This is an odd number.")
