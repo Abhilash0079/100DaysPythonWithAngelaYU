@@ -3,9 +3,9 @@
 1. Create the screen.
 2. Create a paddle.
 3. Move the paddle up and down.
-3. Create another paddle.
-4. Create the ball and make it move.
-5. Detect collision with wall and bounce.
-6. Detect collision with paddle.
-7. Detect when paddle misses.
-8. Keep Score.
+4. Create another paddle.
+5. Create the ball and make it move.
+6. Detect collision with wall and bounce.
+7. Detect collision with paddle.
+8. Detect when paddle misses.
+9. Keep Score.
