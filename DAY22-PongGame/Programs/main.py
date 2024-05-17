@@ -1,5 +1,5 @@
-from turtle import Turtle, Screen
-
+from turtle import Screen
+from paddle import Paddle
 
 # 1. Create the screen
 screen = Screen()
@@ -10,28 +10,15 @@ screen.tracer(0)  # Animation control
 
 
 # 2. Create the paddle
-paddle = Turtle()
-paddle.shape("square")
-paddle.color("white")
-paddle.shapesize(stretch_wid=5, stretch_len=1)
-paddle.penup()
-paddle.goto(350, 0)
+r_paddle = Paddle((350, 0))
+l_paddle = Paddle((-350, 0))
 
-
-# 3. Move the paddle up and down
-def go_up():
-    new_y = paddle.ycor() + 20
-    paddle.goto(paddle.xcor(), new_y)
-
-
-def go_down():
-    new_y = paddle.ycor() - 20
-    paddle.goto(paddle.xcor(), new_y)
-
-
+# 3. Control the paddle
 screen.listen()
-screen.onkey(go_up, "Up")
-screen.onkey(go_down, "Down")
+screen.onkey(r_paddle.go_up, "Up")
+screen.onkey(r_paddle.go_down, "Down")
+screen.onkey(l_paddle.go_up, "w")
+screen.onkey(l_paddle.go_down, "s")
 
 game_is_on = True
 
