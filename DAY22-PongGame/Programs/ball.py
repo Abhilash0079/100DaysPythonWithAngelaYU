@@ -18,6 +18,9 @@ class Ball(Turtle):
         self.goto(new_x, new_y)
 
     # 6. Bouncing the ball when collision with wall
-    def bounce(self):
+    def bounce_y(self):
         self.y_move *= -1
 
+    # 7. Detect collision with paddle.
+    def bounce_x(self):
+        self.x_move *= -1
