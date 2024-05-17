@@ -9,6 +9,7 @@ screen.title("Snake Game")
 screen.tracer(0)  # Animation control
 
 snake = Snake()
+
 # 3. Control te snake
 screen.listen()
 screen.onkey(snake.up, "Up")
