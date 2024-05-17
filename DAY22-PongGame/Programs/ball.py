@@ -24,3 +24,9 @@ class Ball(Turtle):
     # 7. Detect collision with paddle.
     def bounce_x(self):
         self.x_move *= -1
+
+    # 8. When the ball misses the paddle
+    def reset_position(self):
+        self.goto(0, 0)
+        self.bounce_x()
+
