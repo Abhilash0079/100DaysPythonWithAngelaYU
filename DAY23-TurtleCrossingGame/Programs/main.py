@@ -11,6 +11,8 @@ screen.tracer(0)
 
 # 1. Creating a player and moving upward.
 player = Player()
+# 2. Create and move the cars.
+car_Manager = CarManager()
 
 # 1. Creating a player and moving upward.
 screen.listen()
@@ -21,6 +23,10 @@ game_is_on = True
 while game_is_on:
     time.sleep(0.1)
     screen.update()
+
+    # 2. Create and move the cars.
+    car_Manager.create_car()
+    car_Manager.move_cars()
 
 
 screen.exitonclick()
