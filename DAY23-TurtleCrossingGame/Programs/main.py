@@ -13,6 +13,8 @@ screen.tracer(0)
 player = Player()
 # 2. Create and move the cars.
 car_Manager = CarManager()
+# 5. Create a scoreboard and Game Over.
+scoreboard = Scoreboard()
 
 # 1. Creating a player and moving upward.
 screen.listen()
@@ -32,11 +34,15 @@ while game_is_on:
     for car in car_Manager.all_cars:
         if car.distance(player) < 25 :
             game_is_on = False
+            # 5. Create a scoreboard and Game Over.
+            scoreboard.game_over()
     
     # 4. Detect a successful crossing.
     if player.is_at_finish_line():
         player.go_to_start()
         car_Manager.level_up()
+        # 5. Create a scoreboard and Game Over.
+        scoreboard.increase_level()
 
 
 screen.exitonclick()
