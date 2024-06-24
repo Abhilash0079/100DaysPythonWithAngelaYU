@@ -20,3 +20,13 @@ class Player(Turtle):
     
     def go_to_start(self):
         self.goto(STARTING_POSITION)
+    
+
+    # 4. Detect a successful crossing.
+    def is_at_finish_line(self):
+        if self.ycor() > 280 :
+            return True
+        else:
+            return False
+    
+

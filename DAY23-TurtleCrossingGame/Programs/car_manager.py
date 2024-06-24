@@ -26,3 +26,7 @@ class CarManager:
     def move_cars(self):
         for car in self.all_cars:
             car.backward(self.car_speed)
+
+    # 4. Detect a successful crossing.
+    def level_up(self):
+        self.car_speed += MOVE_INCREMENT

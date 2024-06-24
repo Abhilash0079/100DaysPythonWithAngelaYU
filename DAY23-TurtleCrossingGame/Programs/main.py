@@ -32,6 +32,11 @@ while game_is_on:
     for car in car_Manager.all_cars:
         if car.distance(player) < 25 :
             game_is_on = False
+    
+    # 4. Detect a successful crossing.
+    if player.is_at_finish_line():
+        player.go_to_start()
+        car_Manager.level_up()
 
 
 screen.exitonclick()
