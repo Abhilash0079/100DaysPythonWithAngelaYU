@@ -27,6 +27,14 @@ class Snake:
         new_segment.goto(position)
         self.segments.append(new_segment)
 
+    # Keep the high score
+    def reset_snake(self):
+        for seg in self.segments:
+            seg.goto(1000,1000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+
     # 7a. Increase the length of snake
     def extend(self):
         self.add_segment(self.segments[-1].position())
