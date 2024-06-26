@@ -22,3 +22,20 @@ import pandas
 data = pandas.read_csv('D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY25-ReadFileUsingCSVandPandas/Resources/weather_data.csv')
 print(data)
 print(data['temp'])
+
+print(type(data))
+print(type(data['temp']))
+
+data_dict = data.to_dict()
+print(data_dict)
+
+temp_list = data['temp'].to_list()
+print(len(temp_list))
+
+# Find average temperature
+
+avg_temp = sum(temp_list)/len(temp_list)
+print(avg_temp)
+# using pandas
+print(data['temp'].mean())
+print(data['temp'].max())
