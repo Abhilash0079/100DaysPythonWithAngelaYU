@@ -19,52 +19,70 @@
 
 import pandas
 
-data = pandas.read_csv('D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY25-ReadFileUsingCSVandPandas/Resources/weather_data.csv')
-print(data)
-print(data['temp'])
+# data = pandas.read_csv('D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY25-ReadFileUsingCSVandPandas/Resources/weather_data.csv')
+# print(data)
+# print(data['temp'])
 
-print(type(data))
-print(type(data['temp']))
+# print(type(data))
+# print(type(data['temp']))
 
-data_dict = data.to_dict()
-print(data_dict)
+# data_dict = data.to_dict()
+# print(data_dict)
 
-temp_list = data['temp'].to_list()
-print(len(temp_list))
+# temp_list = data['temp'].to_list()
+# print(len(temp_list))
 
-# Find average temperature
+# # Find average temperature
 
-avg_temp = sum(temp_list)/len(temp_list)
-print(avg_temp)
-# using pandas
-print(data['temp'].mean())
-print(data['temp'].max())
+# avg_temp = sum(temp_list)/len(temp_list)
+# print(avg_temp)
+# # using pandas
+# print(data['temp'].mean())
+# print(data['temp'].max())
 
-# # Get data in columns
-print(data['condition'])
-print(data.condition)
+# # # Get data in columns
+# print(data['condition'])
+# print(data.condition)
 
-# Get data in row
-print(data[data.day == "Monday"])
+# # Get data in row
+# print(data[data.day == "Monday"])
 
-# Challenge: To print the row having maximum temperature
-print(data[data.temp == data.temp.max()])
+# # Challenge: To print the row having maximum temperature
+# print(data[data.temp == data.temp.max()])
 
-monday = data[data.day == "Monday"]
-print(monday.condition)
+# monday = data[data.day == "Monday"]
+# print(monday.condition)
 
-# Challenge : Get monday temperature in celceius
-monday_temp = monday.temp[0]
-monday_temp_F = monday_temp * 9/5 + 32
-print(monday_temp_F)
+# # Challenge : Get monday temperature in celceius
+# monday_temp = monday.temp[0]
+# monday_temp_F = monday_temp * 9/5 + 32
+# print(monday_temp_F)
 
-# Create a dataframe from scratch
+# # Create a dataframe from scratch
+
+# data_dict = {
+#     "students": ["Amy", "James", "Abhilash"],
+#     "scores": [76, 65, 98]
+# }
+
+# data_frame = pandas.DataFrame(data_dict)
+# #print(data_frame)
+# data_frame.to_csv('D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY25-ReadFileUsingCSVandPandas/Resources/new_data.csv')
+
+# Read the data from csv and create a new csv file with the extracted data.
+
+data = pandas.read_csv('D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY25-ReadFileUsingCSVandPandas/Resources/Central_Park_Squirrel_Data.csv')
+grey_squirrel_count = len(data[data['Primary Fur Color'] == "Gray"])
+red_squirrel_count = len(data[data['Primary Fur Color'] == "Cinnamon"])
+black_squirrel_count = len(data[data['Primary Fur Color'] == "Black"])
+print(grey_squirrel_count)
+print(red_squirrel_count)
+print(black_squirrel_count)
 
 data_dict = {
-    "students": ["Amy", "James", "Abhilash"],
-    "scores": [76, 65, 98]
+    "Fur Color": ["Gray", "Cinnamon", "Black"],
+    "Count": [grey_squirrel_count, red_squirrel_count, black_squirrel_count]
 }
 
-data_frame = pandas.DataFrame(data_dict)
-#print(data_frame)
-data_frame.to_csv('D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY25-ReadFileUsingCSVandPandas/Resources/new_data.csv')
+df = pandas.DataFrame(data_dict)
+df.to_csv("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY25-ReadFileUsingCSVandPandas/Resources/squirrel_count.csv")
