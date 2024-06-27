@@ -39,3 +39,32 @@ print(avg_temp)
 # using pandas
 print(data['temp'].mean())
 print(data['temp'].max())
+
+# # Get data in columns
+print(data['condition'])
+print(data.condition)
+
+# Get data in row
+print(data[data.day == "Monday"])
+
+# Challenge: To print the row having maximum temperature
+print(data[data.temp == data.temp.max()])
+
+monday = data[data.day == "Monday"]
+print(monday.condition)
+
+# Challenge : Get monday temperature in celceius
+monday_temp = monday.temp[0]
+monday_temp_F = monday_temp * 9/5 + 32
+print(monday_temp_F)
+
+# Create a dataframe from scratch
+
+data_dict = {
+    "students": ["Amy", "James", "Abhilash"],
+    "scores": [76, 65, 98]
+}
+
+data_frame = pandas.DataFrame(data_dict)
+#print(data_frame)
+data_frame.to_csv('D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY25-ReadFileUsingCSVandPandas/Resources/new_data.csv')
