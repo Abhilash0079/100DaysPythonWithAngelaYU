@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from PIL import Image, ImageTk
 
 
 def selection_changed(event):
@@ -72,36 +73,49 @@ def distance_converter():
 
 
 window = Tk()
-window.title("DropDown Menu")
+window.title("Distance Converter")
 window.minsize(width=300, height=200)
+
+# Read the Image
+image = Image.open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY27-Tkinter/Resources/converter.png")
+
+# Resize the image using resize() method
+resize_image = image.resize((50, 50))
+
+img = ImageTk.PhotoImage(resize_image)
+
+# create label and add resize image
+label1 = Label(image=img)
+label1.image = img
+label1.grid(column=1, row=0)
 
 # Entry
 input1 = Entry(width=15)
-input1.grid(column=0, row=0)
+input1.grid(column=0, row=1)
 
 # Dropdown
 combo1 = ttk.Combobox(values=["Miles", "Kilometer", "Meter", "Centimeter"])
 combo1.current(0)
 combo1.bind("<<ComboboxSelected>>", selection_changed)
-combo1.grid(column=1, row=0)
+combo1.grid(column=1, row=1)
 
 my_label1 = Label(text="Miles", font=("Arial", 14, "bold"))
-my_label1.grid(column=2, row=0)
+my_label1.grid(column=2, row=1)
 
 # Entry
 input2 = Label(text='0')
-input2.grid(column=0, row=1)
+input2.grid(column=0, row=2)
 
 combo2 = ttk.Combobox(values=["Miles", "Kilometer", "Meter", "Centimeter"])
 combo2.current(1)
 combo2.bind("<<ComboboxSelected>>", selection_changed)
-combo2.grid(column=1, row=1)
+combo2.grid(column=1, row=2)
 
 my_label2 = Label(text="Kilometer", font=("Arial", 14, "bold"))
-my_label2.grid(column=2, row=1)
+my_label2.grid(column=2, row=2)
 
 # Button
 button = Button(text="Click Me", command=distance_converter)
-button.grid(column=1, row=2)
+button.grid(column=1, row=3)
 
 window.mainloop()
