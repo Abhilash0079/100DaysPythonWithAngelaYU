@@ -40,7 +40,7 @@ def save():
         is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} \nPassword: {password_field}\nIs it ok to save?")
 
         if is_ok:
-            with open("data.txt", "a") as data_file:
+            with open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY29-PasswordManagerGUI/Resources/data.txt", "a") as data_file:
                 data_file.write(f"{website} | {email} | {password_field} \n")
                 web_input.delete(0, END)
                 pass_input.delete(0, END)
