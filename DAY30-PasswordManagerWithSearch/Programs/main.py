@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from random import choice, randint, shuffle
 import pyperclip
+import json
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -32,18 +33,32 @@ def save():
     website = web_input.get()
     email = id_input.get()
     password_field = pass_input.get()
+    new_data = {
+        website: {
+            "email": email,
+            "password": password_field,
+        }
+    }
 
     if len(website) == 0 or len(password_field) == 0:
         messagebox.showwarning(title="Oops", message="Please don't leave any field empty.")
 
     else:
-        is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} \nPassword: {password_field}\nIs it ok to save?")
+        # is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} \nPassword: {password_field}\nIs it ok to save?")
 
-        if is_ok:
-            with open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY30-PasswordManagerWithSearch/Resources/data.txt", "a") as data_file:
-                data_file.write(f"{website} | {email} | {password_field} \n")
-                web_input.delete(0, END)
-                pass_input.delete(0, END)
+        # if is_ok:
+        with open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY30-PasswordManagerWithSearch/Resources/data.json", "r") as data_file:
+            # data_file.write(f"{website} | {email} | {password_field} \n")
+            # Reading the old data
+            data = json.load(data_file)
+            # Updating the old data with new data
+            data.update(new_data)
+
+        with open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY30-PasswordManagerWithSearch/Resources/data.json", "w") as data_file:
+            # Saving updated data
+            json.dump(data, data_file, indent=4)
+            web_input.delete(0, END)
+            pass_input.delete(0, END)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
