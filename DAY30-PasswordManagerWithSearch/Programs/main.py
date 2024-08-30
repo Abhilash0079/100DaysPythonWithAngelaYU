@@ -65,6 +65,22 @@ def save():
             web_input.delete(0, END)
             pass_input.delete(0, END)
 
+# ---------------------------- FIND PASSWORD -------------------------- #
+def find_password():
+    website = web_input.get()
+    try:
+        with open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY30-PasswordManagerWithSearch/Resources/data.json") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showwarning(title="Error", message="No Data File has Found.")
+    else:
+        if website in data:
+            email = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(title=website, message=f"Email: {email}\nPasswrd: {password}")
+        else:
+            messagebox.showwarning(title="Error", message=f"No Details for {website} Exists.")
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
@@ -82,6 +98,9 @@ web_label.grid(column=0, row=1)
 web_input = Entry(width=55)
 web_input.grid(column=1, row=1, columnspan=2)
 web_input.focus()
+
+search_button = Button(text="Search", width=16, command=find_password)
+search_button.grid(column=2, row=1)
 
 id_label = Label(text="Email/Username :")
 id_label.grid(column=0, row=2)
