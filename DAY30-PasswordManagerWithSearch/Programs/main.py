@@ -47,16 +47,21 @@ def save():
         # is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} \nPassword: {password_field}\nIs it ok to save?")
 
         # if is_ok:
-        with open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY30-PasswordManagerWithSearch/Resources/data.json", "r") as data_file:
-            # data_file.write(f"{website} | {email} | {password_field} \n")
-            # Reading the old data
-            data = json.load(data_file)
+        try:
+            with open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY30-PasswordManagerWithSearch/Resources/data.json", "r") as data_file:
+                # Reading the old data
+                data = json.load(data_file)
+        except FileNotFoundError:
+            with open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY30-PasswordManagerWithSearch/Resources/data.json", "w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+        else:
             # Updating the old data with new data
             data.update(new_data)
 
-        with open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY30-PasswordManagerWithSearch/Resources/data.json", "w") as data_file:
-            # Saving updated data
-            json.dump(data, data_file, indent=4)
+            with open("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY30-PasswordManagerWithSearch/Resources/data.json", "w") as data_file:
+                # Saving updated data
+                json.dump(data, data_file, indent=4)
+        finally:
             web_input.delete(0, END)
             pass_input.delete(0, END)
 
