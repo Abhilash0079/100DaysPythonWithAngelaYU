@@ -4,13 +4,21 @@ import random
 
 # ------------------------------ CONSTANT ------------------------- #
 BACKGROUND_COLOR = "#B1DDC6"
-data = pandas.read_csv("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY31-FlashCardCapstoneProject/Resources/data/french_words.csv")
-to_learn = data.to_dict(orient="records")
 current_card = {}
+to_learn = {}
 
-# ------------------------------ BUTTON FUNCTIONALITY ------------- #
+try:
+    data = pandas.read_csv("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY31-FlashCardCapstoneProject/Resources/data/words_to_learn.csv")
+except FileNotFoundError:
+    original_data = pandas.read_csv("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY31-FlashCardCapstoneProject/Resources/data/french_words.csv")
+    to_learn = original_data.to_dict(orient="records")
+else:
+    to_learn = data.to_dict(orient="records")
+
+# ------------------------------ NEXT CARD ------------- #
 def next_card():
     global current_card, flip_timer
+    window.after_cancel(flip_timer)
     current_card = random.choice(to_learn)
     canvas.itemconfig(card_title, text="French", fill="black")
     canvas.itemconfig(card_word, text=current_card["French"], fill="black")
@@ -22,6 +30,14 @@ def flip_card():
     canvas.itemconfig(card_title, text="English", fill="white")
     canvas.itemconfig(card_word, text=current_card["English"], fill="white")
     canvas.itemconfig(card_background, image=card_back_img)
+
+# ------------------------------ IS_KNOWN CARD -------------------- #
+def is_known():
+    to_learn.remove(current_card)
+    learn_data = pandas.DataFrame(to_learn)
+    learn_data.to_csv("D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY31-FlashCardCapstoneProject/Resources/data/words_to_learn.csv", index=False)
+    next_card()
+
 
 
 # ------------------------------ USER INTERFACE ------------------- #
@@ -45,7 +61,7 @@ unknown_button = Button(image=cross_image, highlightthickness=0, command=next_ca
 unknown_button.grid(row=1, column=0)
 
 check_image = PhotoImage(file="D:/UDEMY/Python/100DaysPythonWithAngelaYU/DAY31-FlashCardCapstoneProject/Resources/images/right.png")
-known_button = Button(image=check_image, highlightthickness=0, command=next_card)
+known_button = Button(image=check_image, highlightthickness=0, command=is_known)
 known_button.grid(row=1, column=1)
 
 next_card()
