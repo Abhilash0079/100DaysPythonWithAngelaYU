@@ -10,7 +10,7 @@ MY_LONG = 85.708000  # Your longitude
 
 
 def is_iss_overhead():
-    response = requests.get(url="http://api.open-notify.org/iss-now.json")
+    response = requests.get(url="https://api.sunrise-sunset.org/json?lat=25.475201&lng=85.708000&tzid=Asia/Kolkata")
     response.raise_for_status()
     data = response.json()
 
@@ -27,6 +27,7 @@ def is_night():
         "lat": MY_LAT,
         "lng": MY_LONG,
         "formatted": 0,
+        "tzid": "Asia/Kolkata"
     }
 
     response = requests.get("https://api.sunrise-sunset.org/json", params=parameters)
