@@ -2,7 +2,7 @@ import requests
 
 MY_LAT = 25.475201  # Your latitude
 MY_LONG = 85.708000  # Your longitude
-API_KEY = "cd9845ae76d464d0c03df175b87d0b44"
+API_KEY = "*****984*********64********175b8**********"
 
 parameters = {
     "lat": MY_LAT,
